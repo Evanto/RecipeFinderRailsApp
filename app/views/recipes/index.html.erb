@@ -1,0 +1,21 @@
+<h1>Searching for - <%= @search_term %></h1>
+<p>Powered By Food2Fork.com</p>
+<% if (@recipes.nil? or @recipes == []) %>
+<p> <h2>No recipes found.. Sorry</h2></p>
+<% else %>
+ 
+<table border="1">
+ <tr>
+ <th>Image</th>
+ <th>Name</th>
+ <th>Rank</th>
+ </tr>
+ <% @recipes.each do |course| %>
+ <tr class=<%= cycle('even', 'odd') %>>
+ <td><%= link_to(image_tag(course["image_url"], height: '100', width: '100'), course["f2f_url"])%></td>
+ <td><%= link_to(course["title"], course["f2f_url"]) %></td>
+ <td><%= course["social_rank"] %></td>
+ </tr>
+ <% end %>
+</table>
+<% end %>
